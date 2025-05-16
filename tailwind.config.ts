@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import fluid, { extract } from "fluid-tailwind";
 
 export default {
   content: {
@@ -8,8 +9,10 @@ export default {
       "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
       "./src/slices/**/*.{js,ts,jsx,tsx,mdx}",
     ],
+    extract,
   },
   theme: {
     colors: {},
   },
+  plugins: [fluid],
 } satisfies Config;
