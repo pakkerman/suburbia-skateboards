@@ -1,5 +1,10 @@
 import type { Config } from "tailwindcss";
-import fluid, { extract } from "fluid-tailwind";
+import fluid, {
+  extract,
+  screens,
+  fontSize,
+  FluidThemeConfig,
+} from "fluid-tailwind";
 
 export default {
   content: {
@@ -12,7 +17,12 @@ export default {
     extract,
   },
   theme: {
-    colors: {},
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-bowlby-sc)"],
+        mono: ["var(--font-dm-mono)"],
+      },
+    },
   },
   plugins: [fluid],
 } satisfies Config;
