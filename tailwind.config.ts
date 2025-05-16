@@ -17,10 +17,25 @@ export default {
     extract,
   },
   theme: {
+    /** @type {import('fluid-tailwind').FluidThemeConfig} */
+    fluid: (({ theme }) => ({
+      defaultScreens: ["20rem", theme("screen.lg")],
+    })) satisfies FluidThemeConfig,
+    screens,
+    fontSize,
     extend: {
       fontFamily: {
         sans: ["var(--font-bowlby-sc)"],
         mono: ["var(--font-dm-mono)"],
+      },
+      colors: {
+        "brand-blue": "#4876ff",
+        "brand-lime": "#d9f154",
+        "brand-navy": "#2e3192",
+        "brand-orange": "#ff7347",
+        "brand-pink": "#f7d0e9",
+        "brand-purple": "#692e54",
+        "brand-gray": "#fffdf9",
       },
     },
   },
