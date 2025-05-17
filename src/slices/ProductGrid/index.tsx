@@ -1,51 +1,37 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
+import {
+  PrismicRichText,
+  PrismicText,
+  SliceComponentProps,
+} from "@prismicio/react";
+import { PrismicNextLink } from "@prismicio/next";
 
-/**
- * Props for `ProductGrid`.
- */
+import { Bounded } from "@/app/components/Bounded";
+import { Heading } from "@/app/components/Heading";
+
 export type ProductGridProps = SliceComponentProps<Content.ProductGridSlice>;
 
-/**
- * Component for "ProductGrid" Slices.
- */
 const ProductGrid: FC<ProductGridProps> = ({ slice }) => {
   return (
-    <section
+    <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className="bg-texture bg-brand-gray "
     >
-      Placeholder component for product_grid (variation: {slice.variation})
-      slices.
-      <br />
-      <strong>You can edit this slice directly in your code editor.</strong>
-      {/**
-       * 💡 Use Prismic MCP with your code editor
-       *
-       * Get AI-powered help to build your slice components — based on your actual model.
-       *
-       * ▶️ Setup:
-       * 1. Add a new MCP Server in your code editor:
-       *
-       * {
-       *   "mcpServers": {
-       *     "Prismic MCP": {
-       *       "command": "npx",
-       *       "args": ["-y", "@prismicio/mcp-server"]
-       *     }
-       *   }
-       * }
-       *
-       * 2. Select Claude 3.7 Sonnet (recommended for optimal output)
-       *
-       * ✅ Then open your slice file and ask your code editor:
-       *    "Code this slice"
-       *
-       * Your code editor reads your slice model and helps you code faster ⚡
-       * 📚 Give your feedback: https://community.prismic.io/t/help-us-shape-the-future-of-slice-creation/19505
-       */}
-    </section>
+      <Heading className="text-center ~mb-4/6" as="h2">
+        <PrismicText field={slice.primary.heading} />
+      </Heading>
+      <div className="text-center ~mb-6/10">
+        <PrismicText field={slice.primary.body} />
+      </div>
+
+      {slice.primary.products.map((item, idx) => (
+        <PrismicNextLink key={idx} field={item.skateboard}>
+          Link
+        </PrismicNextLink>
+      ))}
+    </Bounded>
   );
 };
 
