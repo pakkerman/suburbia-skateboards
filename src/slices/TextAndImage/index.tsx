@@ -1,51 +1,58 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
+import {
+  PrismicRichText,
+  PrismicText,
+  SliceComponentProps,
+} from "@prismicio/react";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 
-/**
- * Props for `TextAndImage`.
- */
+import { Bounded } from "@/app/components/Bounded";
+import clsx from "clsx";
+import { Heading } from "@/app/components/Heading";
+import { ButtonLink } from "@/app/components/ButtonLink";
+
 export type TextAndImageProps = SliceComponentProps<Content.TextAndImageSlice>;
 
-/**
- * Component for "TextAndImage" Slices.
- */
 const TextAndImage: FC<TextAndImageProps> = ({ slice }) => {
+  const theme = slice.primary.theme;
+
   return (
-    <section
+    <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className={clsx(
+        theme === "Blue" && "bg-texture bg-brand-blue text-white",
+        theme === "Orange" && "bg-texture bg-brand-ornage text-white",
+        theme === "Navy" && "bg-texture bg-brand-navy text-white",
+        theme === "Lime" && "bg-texture bg-brand-lime",
+      )}
     >
-      Placeholder component for text_and_image (variation: {slice.variation})
-      slices.
-      <br />
-      <strong>You can edit this slice directly in your code editor.</strong>
-      {/**
-       * 💡 Use Prismic MCP with your code editor
-       *
-       * Get AI-powered help to build your slice components — based on your actual model.
-       *
-       * ▶️ Setup:
-       * 1. Add a new MCP Server in your code editor:
-       *
-       * {
-       *   "mcpServers": {
-       *     "Prismic MCP": {
-       *       "command": "npx",
-       *       "args": ["-y", "@prismicio/mcp-server"]
-       *     }
-       *   }
-       * }
-       *
-       * 2. Select Claude 3.7 Sonnet (recommended for optimal output)
-       *
-       * ✅ Then open your slice file and ask your code editor:
-       *    "Code this slice"
-       *
-       * Your code editor reads your slice model and helps you code faster ⚡
-       * 📚 Give your feedback: https://community.prismic.io/t/help-us-shape-the-future-of-slice-creation/19505
-       */}
-    </section>
+      <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-24">
+        <div
+          className={clsx(
+            "flex flex-col items-center gap-8 text-center md:items-start md:text-left",
+            slice.variation === "imageOnLeft" && "md:order-2",
+          )}
+        >
+          <Heading size="lg" as="h2">
+            <PrismicText field={slice.primary.heading} />
+          </Heading>
+          <div className="max-w-md text-lg leading-relaxed">
+            <PrismicRichText field={slice.primary.body} />
+          </div>
+          <ButtonLink
+            field={slice.primary.button}
+            color={theme === "Lime" ? "orange" : "lime"}
+          >
+            {slice.primary.button.text}
+          </ButtonLink>
+        </div>
+        {/* <PrismicNextImage field={slice.primary.background_image} /> */}
+
+        <PrismicNextImage field={slice.primary.foreground_image} />
+      </div>
+    </Bounded>
   );
 };
 
