@@ -1,14 +1,10 @@
 import { FC } from "react";
-import { Content } from "@prismicio/client";
-import {
-  PrismicRichText,
-  PrismicText,
-  SliceComponentProps,
-} from "@prismicio/react";
-import { PrismicNextLink } from "@prismicio/next";
+import { Content, isFilled } from "@prismicio/client";
+import { PrismicText, SliceComponentProps } from "@prismicio/react";
 
 import { Bounded } from "@/app/components/Bounded";
 import { Heading } from "@/app/components/Heading";
+import SkateboardProduct from "./SkateboardProduct";
 
 export type ProductGridProps = SliceComponentProps<Content.ProductGridSlice>;
 
@@ -26,11 +22,14 @@ const ProductGrid: FC<ProductGridProps> = ({ slice }) => {
         <PrismicText field={slice.primary.body} />
       </div>
 
-      {slice.primary.products.map((item, idx) => (
-        <PrismicNextLink key={idx} field={item.skateboard}>
-          Link
-        </PrismicNextLink>
-      ))}
+      <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {slice.primary.products.map(
+          ({ skateboard }) =>
+            isFilled.contentRelationship(skateboard) && (
+              <SkateboardProduct key={skateboard.id} id={skateboard.id} />
+            ),
+        )}
+      </div>
     </Bounded>
   );
 };
