@@ -1,16 +1,16 @@
 import { FC } from "react";
+import clsx from "clsx";
 import { Content } from "@prismicio/client";
 import {
   PrismicRichText,
   PrismicText,
   SliceComponentProps,
 } from "@prismicio/react";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 
 import { Bounded } from "@/app/components/Bounded";
-import clsx from "clsx";
 import { Heading } from "@/app/components/Heading";
 import { ButtonLink } from "@/app/components/ButtonLink";
+import ParallaxImage from "./ParallaxImage";
 
 export type TextAndImageProps = SliceComponentProps<Content.TextAndImageSlice>;
 
@@ -23,7 +23,7 @@ const TextAndImage: FC<TextAndImageProps> = ({ slice }) => {
       data-slice-variation={slice.variation}
       className={clsx(
         theme === "Blue" && "bg-texture bg-brand-blue text-white",
-        theme === "Orange" && "bg-texture bg-brand-ornage text-white",
+        theme === "Orange" && "bg-texture bg-brand-orange text-white",
         theme === "Navy" && "bg-texture bg-brand-navy text-white",
         theme === "Lime" && "bg-texture bg-brand-lime",
       )}
@@ -48,9 +48,11 @@ const TextAndImage: FC<TextAndImageProps> = ({ slice }) => {
             {slice.primary.button.text}
           </ButtonLink>
         </div>
-        {/* <PrismicNextImage field={slice.primary.background_image} /> */}
 
-        <PrismicNextImage field={slice.primary.foreground_image} />
+        <ParallaxImage
+          foregroundImage={slice.primary.foreground_image}
+          backgroundImage={slice.primary.background_image}
+        />
       </div>
     </Bounded>
   );

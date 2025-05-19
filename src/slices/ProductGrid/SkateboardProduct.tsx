@@ -14,7 +14,6 @@ async function getDominantColor(url: string) {
 
   const res = await fetch(paletteURL);
   const json = await res.json();
-  console.log("thess are the console you are looking for", paletteURL, json);
 
   return (
     json.dominant_colors.vibrant?.hex || json.dominant_color.vibrant_light?.hex
