@@ -11,6 +11,7 @@ import { Heading } from "@/app/components/Heading";
 import { ButtonLink } from "@/app/components/ButtonLink";
 import { WideLogo } from "./WideLogo";
 import { TallLogo } from "./TallLogo";
+import InteractiveSkateboard from "./InteractiveSkateboard";
 
 export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 
@@ -46,6 +47,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       </div>
 
       {/* skateboard absolutely positioned */}
+      <InteractiveSkateboard />
     </Bounded>
   );
 };
