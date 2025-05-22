@@ -4,7 +4,7 @@ import {
   PrismicText,
   SliceComponentProps,
 } from "@prismicio/react";
-import { Content } from "@prismicio/client";
+import { asImageSrc, Content } from "@prismicio/client";
 
 import { Bounded } from "@/app/components/Bounded";
 import { Heading } from "@/app/components/Heading";
@@ -13,9 +13,22 @@ import { WideLogo } from "./WideLogo";
 import { TallLogo } from "./TallLogo";
 import InteractiveSkateboard from "./InteractiveSkateboard";
 
+const DEFAULT_DECK_TEXTURE = "/skateboard/Deck.webp";
+const DEFAULT_WHEEL_TEXTURE = "/skateboard/SkateWheel.webp";
+const DEFAULT_TRUCK_COLOR = "#6F6E6A";
+const DEFAULT_BOLT_COLOR = "#6F6E6A";
+
 export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 
 const Hero: FC<HeroProps> = ({ slice }) => {
+  const deckTextureURL =
+    asImageSrc(slice.primary.skateboard_deck_texture) || DEFAULT_DECK_TEXTURE;
+  const wheelTextureURL =
+    asImageSrc(slice.primary.skateboard_wheel_texture) || DEFAULT_WHEEL_TEXTURE;
+  const truckColor =
+    slice.primary.skateboard_truck_color || DEFAULT_TRUCK_COLOR;
+  const boltColor = slice.primary.skateboard_bolt_color || DEFAULT_BOLT_COLOR;
+
   return (
     <Bounded
       data-slice-type={slice.slice_type}
@@ -47,7 +60,12 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       </div>
 
       {/* skateboard absolutely positioned */}
-      <InteractiveSkateboard />
+      <InteractiveSkateboard
+        deckTextureURL={deckTextureURL}
+        wheelTextureURL={wheelTextureURL}
+        truckColor={truckColor}
+        boltColor={boltColor}
+      />
     </Bounded>
   );
 };
