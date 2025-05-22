@@ -2,7 +2,7 @@ import * as THREE from "three";
 import React, { useEffect, useMemo, useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import { useFrame } from "@react-three/fiber";
+import { ObjectMap, useFrame } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -39,8 +39,8 @@ export default function Skateboard({
   boltColor,
   constantWheelSpin = false,
 }: SkateboardProps) {
-  const { nodes, materials } = useGLTF("/skateboard.gltf") as GLTFResult;
-
+  const { nodes, materials } = useGLTF("/skateboard.gltf") as GLTFResult &
+    ObjectMap;
   const wheelRefs = useRef<THREE.Object3D[]>([]);
 
   // wheel textures
