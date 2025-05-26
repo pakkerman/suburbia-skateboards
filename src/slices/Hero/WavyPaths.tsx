@@ -8,7 +8,7 @@ import clsx from "clsx";
 gsap.registerPlugin(useGSAP);
 
 export function WavyPaths() {
-  const root = useRef<SVGSVGElement>(null);
+  const root = useRef<SVGElement>(null);
 
   useGSAP(() => {
     if (!root.current) return;
@@ -36,7 +36,7 @@ export function WavyPaths() {
       viewBox="0 0 1242 308"
       width={1242}
       height={308}
-      className={clsx("pointer-events-none text-zinc-600")}
+      className={clsx("pointer-events-none text-zinc-600", "animate-squiggle")}
     >
       <path
         stroke="currentColor"

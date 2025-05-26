@@ -2,12 +2,13 @@
 
 import { Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { ContactShadows, Environment } from "@react-three/drei";
-import { Canvas, ThreeEvent, useThree } from "@react-three/fiber";
 import gsap from "gsap";
+import { ContactShadows, Environment, Html } from "@react-three/drei";
+import { Canvas, ThreeEvent, useThree } from "@react-three/fiber";
 
 import Skateboard from "@/app/components/Skateboard";
 import Hotspot from "./Hotspot";
+import { WavyPaths } from "./WavyPaths";
 
 const INITIAL_CAMERA_POSITION = [1.5, 1, 1.4] as const;
 
@@ -62,6 +63,26 @@ function Scene({
   const { camera } = useThree();
 
   useEffect(() => {
+    if (!containerRef.current || !originRef.current) return;
+
+    gsap.to(containerRef.current.position, {
+      x: 0.2,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+
+    gsap.to(originRef.current.rotation, {
+      y: Math.PI / 64,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+  }, []);
+
+  useEffect(() => {
     camera.lookAt(new THREE.Vector3(-0.2, 0.15, 0.0));
 
     setZoom();
@@ -86,8 +107,7 @@ function Scene({
 
     const board = containerRef.current;
     const origin = originRef.current;
-    if (!board) return;
-    if (!origin) return;
+    if (!containerRef.current || !originRef.current) return;
 
     const { name } = event.object;
 
@@ -211,6 +231,21 @@ function Scene({
         </group>
       </group>
       <ContactShadows opacity={0.6} position={[0, -0.08, 0]} />
+
+      <group
+        rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+        position={[0, -0.09, -0.5]}
+        scale={[0.2, 0.2, 0.2]}
+      >
+        <Html
+          transform
+          zIndexRange={[1, 0]}
+          occlude="blending"
+          wrapperClass="pointer-event-none"
+        >
+          <WavyPaths />
+        </Html>
+      </group>
     </group>
   );
 }
