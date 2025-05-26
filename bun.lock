@@ -4,6 +4,7 @@
     "": {
       "name": "suburbia-skateboardz",
       "dependencies": {
+        "@gsap/react": "^2.1.2",
         "@prismicio/client": "^7.17.2",
         "@prismicio/next": "^2.0.1",
         "@prismicio/react": "^3.2.1",
@@ -71,6 +72,8 @@
     "@eslint/object-schema": ["@eslint/object-schema@2.1.6", "", {}, ""],
 
     "@eslint/plugin-kit": ["@eslint/plugin-kit@0.2.8", "", { "dependencies": { "@eslint/core": "^0.13.0", "levn": "^0.4.1" } }, ""],
+
+    "@gsap/react": ["@gsap/react@2.1.2", "", { "peerDependencies": { "gsap": "^3.12.5", "react": ">=17" } }, "sha512-JqliybO1837UcgH2hVOM4VO+38APk3ECNrsuSM4MuXp+rbf+/2IG2K1YJiqfTcXQHH7XlA0m3ykniFYstfq0Iw=="],
 
     "@hapi/hoek": ["@hapi/hoek@9.3.0", "", {}, "sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ=="],
 
