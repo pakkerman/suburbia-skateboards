@@ -26,6 +26,7 @@ const TextAndImage: FC<TextAndImageProps> = ({ slice, index }) => {
 
   return (
     <Bounded
+      id="about"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={clsx(

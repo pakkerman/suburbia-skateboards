@@ -6,16 +6,19 @@ type BoundedProps = {
   className?: string;
   style?: CSSProperties;
   children: ReactNode;
+  id?: string;
 };
 
 export function Bounded({
   as: Comp = "section",
   className,
   children,
+  id,
   ...restProps
 }: BoundedProps) {
   return (
     <Comp
+      id={id}
       className={clsx(
         "px-6 ~py-10/16 [.header+&]:pt-44 [.header+&]:md:pt-32",
         className,

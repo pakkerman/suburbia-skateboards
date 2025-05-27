@@ -15,6 +15,7 @@ const TeamGrid: FC<TeamGridProps> = async ({ slice }): Promise<JSX.Element> => {
   const skaters = await client.getAllByType("skater");
   return (
     <Bounded
+      id="team"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className="bg-texture bg-brand-navy"
