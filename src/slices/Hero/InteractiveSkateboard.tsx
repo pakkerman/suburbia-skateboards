@@ -98,7 +98,7 @@ function Scene({
     }
 
     return () => window.removeEventListener("resize", setZoom);
-  }, []);
+  }, [camera]);
 
   function onClick(event: ThreeEvent<MouseEvent>) {
     event.stopPropagation();
@@ -107,7 +107,8 @@ function Scene({
 
     const board = containerRef.current;
     const origin = originRef.current;
-    if (!containerRef.current || !originRef.current) return;
+    if (!board) return;
+    if (!origin) return;
 
     const { name } = event.object;
 

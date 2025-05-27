@@ -18,7 +18,6 @@ type GLTFResult = GLTF & {
     Truck1: THREE.Mesh;
     Truck2: THREE.Mesh;
   };
-  materials: {};
 };
 
 type SkateboardProps = {
@@ -42,8 +41,7 @@ export default function Skateboard({
   constantWheelSpin = false,
   pose = "upright",
 }: SkateboardProps) {
-  const { nodes, materials } = useGLTF("/skateboard.gltf") as GLTFResult &
-    ObjectMap;
+  const { nodes } = useGLTF("/skateboard.gltf") as GLTFResult & ObjectMap;
   const wheelRefs = useRef<THREE.Object3D[]>([]);
 
   // wheel textures
@@ -127,7 +125,7 @@ export default function Skateboard({
         metalness: 0.8,
         roughness: 0.25,
       }),
-    [truckColor],
+    [truckColor, metalNormal],
   );
 
   const deckMaterial = useMemo(
