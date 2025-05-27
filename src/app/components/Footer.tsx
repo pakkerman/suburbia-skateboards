@@ -34,14 +34,16 @@ export default async function Footer() {
         {/* Logo */}
         <Logo className="pointer-events-none relative h-20 mix-blend-exclusion md:h-28" />
       </div>
-      <Bounded as="nav" className="">
-        <ul className="flex flex-wrap justify-center gap-8 ~text-lg/xl">
-          {settings.data.navigation.map((item) => (
-            <li key={item.link.text} className="hover:underline">
-              <PrismicLink field={item.link} />
-            </li>
-          ))}
-        </ul>
+      <Bounded className="">
+        <nav>
+          <ul className="flex flex-wrap justify-center gap-8 ~text-lg/xl">
+            {settings.data.navigation.map((item) => (
+              <li key={item.link.text} className="hover:underline">
+                <PrismicLink field={item.link} />
+              </li>
+            ))}
+          </ul>
+        </nav>
         {/* Footer nav */}
       </Bounded>
     </footer>
