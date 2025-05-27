@@ -24,10 +24,10 @@ const defaultContext: CustomizerControlContext = {
 const CustomizerControlContext = createContext(defaultContext);
 
 type CustomizerControlProviderProps = {
-  defaultWheel: Content.BoardCustomizerDocumentDataWheelsItem;
-  defaultDeck: Content.BoardCustomizerDocumentDataDecksItem;
-  defaultTruck: Content.BoardCustomizerDocumentDataMetalsItem;
-  defaultBolt: Content.BoardCustomizerDocumentDataMetalsItem;
+  defaultWheel?: Content.BoardCustomizerDocumentDataWheelsItem;
+  defaultDeck?: Content.BoardCustomizerDocumentDataDecksItem;
+  defaultTruck?: Content.BoardCustomizerDocumentDataMetalsItem;
+  defaultBolt?: Content.BoardCustomizerDocumentDataMetalsItem;
   children?: React.ReactNode;
 };
 
@@ -63,6 +63,6 @@ export function CustomizerControlProvider({
   );
 }
 
-export function useCustomizer() {
+export function useCustomizerControls() {
   return useContext(CustomizerControlContext);
 }
