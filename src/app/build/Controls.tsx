@@ -46,7 +46,7 @@ export default function Controls({
       url.searchParams.set("wheel", selectedWheel.uid);
 
     if (isFilled.keyText(selectedDeck?.uid))
-      url.searchParams.set("wheel", selectedDeck.uid);
+      url.searchParams.set("deck", selectedDeck.uid);
 
     if (isFilled.keyText(selectedTruck?.uid))
       url.searchParams.set("truck", selectedTruck.uid);
