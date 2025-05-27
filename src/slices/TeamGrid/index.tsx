@@ -24,7 +24,7 @@ const TeamGrid: FC<TeamGridProps> = async ({ slice }): Promise<JSX.Element> => {
           <PrismicText field={slice.primary.heading} />
         </Heading>
       </SlideIn>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+      <div className="grid grid-cols-1 ~gap-8/24 md:grid-cols-2 lg:grid-cols-4">
         {skaters.map((skater, idx) => (
           <Fragment key={idx}>
             <SlideIn>
